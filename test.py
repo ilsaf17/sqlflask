@@ -1,11 +1,16 @@
 from requests import get, post, delete
 
+print(post('http://localhost:5000/api/jobs',
+           json={'team_leader': 2,
+                 'job': 'Текст новости1112',
+                 'work_size': 12
+                 }).json())
 
-print(get('http://localhost:5000/api/jobs').json())
-print(get('http://localhost:5000/api/jobs/1').json())
-# неверно:
-print(get('http://localhost:5000/api/jobs/999').json())
-print(get('http://localhost:5000/api/jobs/dfds').json())
+# print(get('http://localhost:5000/api/jobs').json())
+# print(get('http://localhost:5000/api/jobs/1').json())
+# # неверно:
+# print(get('http://localhost:5000/api/jobs/999').json())
+# print(get('http://localhost:5000/api/jobs/dfds').json())
 # print(get('http://localhost:5000/api/users/show/1').json())
 # print(get('http://localhost:5000/api/jobs').json())
 # print(get('http://localhost:5000/api/jobs/1').json())
@@ -22,11 +27,3 @@ print(get('http://localhost:5000/api/jobs/dfds').json())
 #                'position': 'Текст н2овости1122',
 #                'email': 'dfdf111222',
 #            }).json())
-
-
-
-# print(post('http://localhost:5000/api/jobs',
-#            json={'team_leader': 1,
-#                  'job': 'Текст новости111',
-#                  'work_size': 1
-#                  }).json())
