@@ -17,9 +17,14 @@ def get_jobs():
     jobs = db_sess.query(Jobs).all()
     return jsonify(
         {
-            'users':
-                [item.to_dict(only=('id', 'position', 'email'))
+            'jobs':
+                [item.to_dict(only=('id', 'team_leader',
+                                    'job', 'work_size',
+                                    'collaborators',
+                                    'end_date', 'start_date',
+                                    'is_finished'))
                  for item in jobs]
+
         }
     )
 
