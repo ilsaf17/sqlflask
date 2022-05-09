@@ -20,9 +20,8 @@ def get_jobs():
             'jobs':
                 [item.to_dict(only=('id', 'team_leader',
                                     'job', 'work_size',
-                                    'collaborators',
-                                    'end_date', 'start_date',
-                                    'is_finished'))
+                                    'collaborators', 'start_date',
+                                    'end_date', 'is_finished'))
                  for item in jobs]
 
         }
@@ -30,15 +29,18 @@ def get_jobs():
 
 
 @blueprint.route('/api/jobs/<int:jobs_id>', methods=['GET'])
-def get_one_job(job_id):
+def get_one_job(jobs_id):
     db_sess = db_session.create_session()
-    jobs = db_sess.query(Jobs).get(job_id)
+    jobs = db_sess.query(Jobs).get(jobs_id)
     if not jobs:
         return jsonify({'error': 'Not found'})
     return jsonify(
         {
             'jobs': jobs.to_dict(only=(
-                'id', 'position', 'email'))
+                'id', 'team_leader',
+                'job', 'work_size',
+                'collaborators',
+                'end_date', 'start_date'))
         }
     )
 
@@ -48,13 +50,13 @@ def create_job():
     if not request.json:
         return jsonify({'error': 'Empty request'})
     elif not all(key in request.json for key in
-                 ['name', 'position', 'email']):
+                 ['team_leader', 'job', 'work_size']):
         return jsonify({'error': 'Bad request'})
     db_sess = db_session.create_session()
     jobs = Jobs(
-        name=request.json['name'],
-        position=request.json['position'],
-        email=request.json['email'],
+        team_leader=request.json['team_leader'],
+        job=request.json['job'],
+        work_size=request.json['work_size']
     )
     db_sess.add(jobs)
     db_sess.commit()
@@ -66,7 +68,7 @@ def edit_job(id):
     if not request.json:
         return jsonify({'error': 'Empty request'})
     elif not all(key in request.json for key in
-                 ['id', 'name', 'position', 'email']):
+                 ['id', 'team_leader', 'job', 'work_size', 'collaborators', 'end_date', 'start_date']):
         return jsonify({'error': 'Bad request'})
     db_sess = db_session.create_session()
     jobs = db_sess.query(Jobs).get(request.json['id'])
@@ -77,9 +79,12 @@ def edit_job(id):
     db_sess = db_session.create_session()
     job = Jobs(
         id=request.json['id'],
-        name=request.json['name'],
-        position=request.json['position'],
-        email=request.json['email'],
+        team_leader=request.json['team_leader'],
+        job=request.json['job'],
+        work_size=request.json['work_size'],
+        collaborators=request.json['collaborators'],
+        end_date=request.json['end_date'],
+        start_date=request.json['start_date']
     )
     db_sess.add(job)
     db_sess.commit()

@@ -33,7 +33,7 @@ def get_one_user(users_id):
     return jsonify(
         {
             'users': users.to_dict(only=(
-                'id', 'position', 'email'))
+                'id', 'position', 'email', 'city_from', 'name', 'surname'))
         }
     )
 
