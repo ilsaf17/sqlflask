@@ -27,7 +27,7 @@ def get_jobs():
 @blueprint.route('/api/users/<int:jobs_id>', methods=['GET'])
 def get_one_job(job_id):
     db_sess = db_session.create_session()
-    jobs = db_sess.query(User).get(job_id)
+    jobs = db_sess.query(Jobs).get(job_id)
     if not jobs:
         return jsonify({'error': 'Not found'})
     return jsonify(
