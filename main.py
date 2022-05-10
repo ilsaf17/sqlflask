@@ -78,6 +78,10 @@ def results(nickname, level, rating):
     return render_template('choiceplanet.html', nickname=nickname, level=level, rating=rating,
                            title='Результаты отбора')
 
+@app.route('/distribution')
+def results(nickname, level, rating):
+    return render_template('choiceplanet.html', nickname=nickname, level=level, rating=rating,
+                           title='Результаты отбора')
 
 def main():
     db_session.global_init("db/blogs.db")
