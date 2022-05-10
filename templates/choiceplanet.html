@@ -2,23 +2,11 @@
 
 {% block content %}
 
-{% if planet_name == "Марс" %}
 <div class="alert alert-primary" role="alert">
-    <h2>{{planet_name}} - самая красная планета</h2>
+    <h2> Поздравляем, {{nickname}}, ваш рейтинг после {{level}} этапа </h2>
 </div>
 <div class="alert alert-secondary" role="alert">
-    <h4>люди скоро буду жить здесь</h4>
+    <h4>{{rating}}!</h4>
 </div>
-{% elif planet_name == "Земля" %}
-<div class="alert alert-secondary" role="alert">
-    <h2> {{planet_name}} - самая оживленная планета </h2>
-</div>
-<div class="alert alert-primary" role="alert">
-    <h4> на нашей планете живут люди <h4>
-</div>
-{% else %}
-<div class="alert alert-primary" role="alert">
-                      А мы тут компонентами Bootstrap балуемся
-                    </div>
-{% endif %}
+
 {% endblock %}

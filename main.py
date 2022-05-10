@@ -73,10 +73,10 @@ def users_show(user_id):
                            title='Миссия Колонизация Марса')
 
 
-@app.route('/choice/<planet_name>')
-def choice(planet_name):
-    return render_template('choiceplanet.html', planet_name=planet_name,
-                           title='Миссия Колонизация Марса')
+@app.route('/results/<nickname>/<int:level>/<float:rating>')
+def results(nickname, level, rating):
+    return render_template('choiceplanet.html', nickname=nickname, level=level, rating=rating,
+                           title='Результаты отбора')
 
 
 def main():
