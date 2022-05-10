@@ -57,7 +57,7 @@ def create_user():
 
 
 @blueprint.route('/api/users', methods=['POST'])
-def edit_user(id):
+def edit_user():
     if not request.json:
         return jsonify({'error': 'Empty request'})
     elif not all(key in request.json for key in
@@ -76,7 +76,7 @@ def edit_user(id):
         position=request.json['position'],
         email=request.json['email'],
     )
-    db_sess.add(users)
+    db_sess.add(user)
     db_sess.commit()
     return jsonify({'success': 'OK'})
 
