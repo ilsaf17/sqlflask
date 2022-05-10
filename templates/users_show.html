@@ -1,5 +1,9 @@
 {% extends "base.html" %}
 
 {% block content %}
-<img src='static\img\mars.jpg' alt="здесь должна была быть картинка, но не нашлась"
+
+<h2>Nostalgy</h2>
+<h2>{{name}} {{surname}}</h2>
+<h4>{{city}}</h4>
+<img src="{{url_for('static', filename='map.jpg')}}" alt="здесь должна была быть картинка, но не нашлась"
 {% endblock %}

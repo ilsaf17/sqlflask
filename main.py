@@ -40,7 +40,7 @@ def map_image(name):
         print(geocoder_request)
         print("Http статус:", response.status_code, "(", response.reason, ")")
 
-    map_request = f"https://static-maps.yandex.ru/1.x/?ll={toponym}&spn=18,18&l=map"
+    map_request = f"https://static-maps.yandex.ru/1.x/?ll={toponym}&spn=5,5&l=map"
     response = requests.get(map_request)
 
     if not response:
@@ -50,9 +50,12 @@ def map_image(name):
         sys.exit(1)
 
     # Запишем полученное изображение в файл.
-    map_file = "static/img/map.jpg"
+    map_file = "static/map.png"
     with open(map_file, "wb") as file:
         file.write(response.content)
+    from PIL import Image
+    img_PIL = Image.open('static\map.png').convert('RGB')
+    img_PIL.save('static\map.jpg')
 
 
 @app.route('/users_show/<int:user_id>', methods=['GET'])
@@ -61,7 +64,7 @@ def users_show(user_id):
     name, surname = res['users']['name'], res['users']['surname']
     city = res['users']['city_from']
     map_image(city)
-    return render_template('users_show.html', name=name, city=city,
+    return render_template('users_show.html', name=name, surname=surname, city=city,
                            title='Миссия Колонизация Марса')
 
 

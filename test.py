@@ -1,7 +1,8 @@
 from requests import get, post, delete
 
-print(delete('http://localhost:5000/api/jobs/1').json())
 
+
+# print(delete('http://localhost:5000/api/jobs/1').json())
 # print(post('http://localhost:5000/api/jobs',
 #            json={'team_leader': 2,
 #                  'job': 'Текст новости1112',
@@ -25,9 +26,3 @@ print(delete('http://localhost:5000/api/jobs/1').json())
 # print(get('http://localhost:5000/api/jobs/10').json())
 # print(get('http://localhost:5000/api/jobs/sdsdwsd').json())
 # print(get('http://localhost:5000/api/users').json())
-# print(post('http://localhost:5000/api/users',
-#            json={'id': 4,
-#                'name': 'Заголовок112',
-#                'position': 'Текст н2овости1122',
-#                'email': 'dfdf111222',
-#            }).json())
