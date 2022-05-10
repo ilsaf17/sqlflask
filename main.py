@@ -16,6 +16,11 @@ app = Flask(__name__)
 app.config['SECRET_KEY'] = 'yandexlyceum_secret_key'
 
 
+@app.route("/")
+def index():
+    return render_template("base.html")
+
+
 @app.errorhandler(404)
 def not_found(error):
     return make_response(jsonify({'error': 'Not found'}), 404)
@@ -65,6 +70,12 @@ def users_show(user_id):
     city = res['users']['city_from']
     map_image(city)
     return render_template('users_show.html', name=name, surname=surname, city=city,
+                           title='Миссия Колонизация Марса')
+
+
+@app.route('/choice/<planet_name>')
+def choice(planet_name):
+    return render_template('choiceplanet.html', planet_name=planet_name,
                            title='Миссия Колонизация Марса')
 
 
